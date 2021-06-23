@@ -706,6 +706,8 @@ static void output_segment_list(OutputStream *os, AVIOContext *out, AVFormatCont
             Segment *seg = os->segments[i];
             avio_printf(out, "\t\t\t\t\t<SegmentURL media=\"%s\" />\n", seg->file);
         }
+        if (c->streaming)
+            avio_printf(out, "\t\t\t\t\t<SegmentURL media=\"%s\" />\n", os->filename);
         avio_printf(out, "\t\t\t\t</SegmentList>\n");
     }
     if (!c->lhls || final) {
